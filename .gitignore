@@ -1,7 +1,0 @@
-
-*.db
-*.sqlite
-*.json
-*.opendb
-*.db-wal
-*.db-shm
