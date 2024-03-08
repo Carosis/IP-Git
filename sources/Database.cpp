@@ -157,8 +157,9 @@ void Database::overwritePassword(int user_id, string used_password) {
 
 	// If the user has 5 or more existing records, delete the oldest one
 	if (existingPasswordCount >= 5) {
-		string deleteOldestPasswordSQL = "DELETE FROM passwords WHERE user_id = " + to_string(user_id) +
-			" ORDER BY password_id ASC LIMIT 1;";
+		string deleteOldestPasswordSQL = "DELETE FROM passwords WHERE password_id = ("
+			"SELECT password_id FROM passwords WHERE user_id = " + to_string(user_id) +
+			" ORDER BY password_id ASC LIMIT 1);";
 		sqlite3_exec(dbConnection, deleteOldestPasswordSQL.c_str(), NULL, 0, &errorMessage);
 
 		if (errorMessage) {

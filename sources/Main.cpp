@@ -28,6 +28,17 @@ int main() {
 	string url = "www.hackUrAccount.com";
 	string raiseUser = "Li Jia";
 	Database::insertRequest(url, raiseUser);
+
+	//test change password
+	string newpasssord = "This is newpassword1";
+	
+	Database::changePassword(raiseUser, "This is newpassword1");
+	Database::changePassword(raiseUser, "This is newpassword2");
+	Database::changePassword(raiseUser, "This is newpassword3");
+	Database::changePassword(raiseUser, "This is newpassword4");
+	Database::changePassword(raiseUser, "This is newpassword5");
+	Database::changePassword(raiseUser, "This is newpassword6");
+	Database::changePassword(raiseUser, "This is newpassword7");
 	
 
 

@@ -30,7 +30,7 @@ public:
 	static int getUserIdByUsername(const string& username);
 
 
-	// set 
+	// set methods
 	static void changePassword(const string& username, const string& newPassword);
 
 	
