@@ -3,6 +3,10 @@
 #include <string>
 #include <vector>
 #include "sqlite3.h"
+#include <ctime>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -16,11 +20,22 @@ public:
 	// method to close the database connection
 	static void close();
 
-	// method to insert a procedure into the database
-	static void insertProcedure(string procedureName);
+	// insert methods
+	static void insertUser(string username, string password, string email);
+	static void insertPassword(int user_id, string used_password);
+	static void overwritePassword(int user_id, string used_password); // function to use when change password
+	static void insertRequest(string url, string username);
 
-	// method to get all the procedures from the database
-	static void getProcedures(vector<string>& results);
+	// get methods
+	static int getUserIdByUsername(const string& username);
+
+
+	// set 
+	static void changePassword(const string& username, const string& newPassword);
+
+	
+	
+
 
 private:
 	// the connection pointer to the database

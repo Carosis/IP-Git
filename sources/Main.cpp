@@ -9,10 +9,27 @@ int main() {
 
 	// This logic is highly simplified based on iteration 1 requirements and 
 	// the assumption that the programs are valid.
-	string procedureName = "User";
 
-	// insert the procedure into the database
-	Database::insertProcedure(procedureName);
+	//Test data for user tabole
+	string username = "Wong Chen";
+	string password = "password123";
+	string email = "wong@abc.com";
+	Database::insertUser(username, password, email);
+	username = "Zhong Chen";
+	password = "abcdef";
+	email = "Zhong@abc.com";
+	Database::insertUser(username, password, email);
+	username = "Li Jia";
+	password = "hahahahahaha";
+	email = "Li@abc.com";
+	Database::insertUser(username, password, email);
+
+	//test data for request table
+	string url = "www.hackUrAccount.com";
+	string raiseUser = "Li Jia";
+	Database::insertRequest(url, raiseUser);
+	
+
 
     return 0;
 }
