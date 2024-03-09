@@ -29,11 +29,12 @@ public:
 	// get methods
 	static int getUserIdByUsername(const string& username);
 
+	static void exportApprovedURLs();
 
 	// set methods
 	static void changePassword(const string& username, const string& newPassword);
 
-	
+
 	
 
 

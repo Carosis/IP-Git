@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Main.h"
+#include <fstream>
+#include "Database.h"
 
 
 int main() {
@@ -40,7 +42,6 @@ int main() {
 	Database::changePassword(raiseUser, "This is newpassword6");
 	Database::changePassword(raiseUser, "This is newpassword7");
 	
-
 
     return 0;
 }

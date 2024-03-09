@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 sqlite3* Database::dbConnection;
 vector<vector<string>> Database::dbResults;
@@ -291,8 +292,46 @@ void Database::changePassword(const string& username, const string& newPassword)
 	overwritePassword(userId, newPassword);
 }
 
+void Database::exportApprovedURLs() {
+	// Check if the database connection is valid
+	if (!dbConnection) {
+		cerr << "Database connection is invalid." << endl;
+		return;
+	}
 
+	// Open the file for writing
+	ofstream outFile("C:\\Squid\\blacklist.txt");
+	if (!outFile.is_open()) {
+		cerr << "Error opening file for writing." << endl;
+		return;
+	}
 
+	// SQL query to fetch approved URLs
+	string selectApprovedURLsSQL = "SELECT url FROM requests WHERE status = 'approved';";
+
+	// Execute the SQL query
+	int result = sqlite3_exec(dbConnection, selectApprovedURLsSQL.c_str(), callback, nullptr, &errorMessage);
+
+	// Check for errors
+	if (result != SQLITE_OK) {
+		cerr << "Error fetching approved URLs: " << errorMessage << endl;
+		sqlite3_free(errorMessage);
+		return;
+	}
+
+	// Write fetched URLs to the file
+	for (const auto& row : dbResults) {
+		if (!row.empty()) {
+			outFile << row[0] << endl;
+		}
+	}
+
+	// Close the file
+	outFile.close();
+
+	// Clear the results vector
+	dbResults.clear();
+}
 
 // callback method to put one row of results from the database into the dbResults vector
 // This method is called each time a row of results is returned from the database
